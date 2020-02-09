@@ -248,12 +248,23 @@ void printDirectory(int index = -1) {
 	}
 }
 
+void printHelp() {
+	Serial.println(F("T:TIME SET"));
+	Serial.println(F("S:SEARCH DEVICES"));
+	Serial.println(F("L:LIST SD CARD"));
+	Serial.println(F("N:DISPLAY NAMES"));
+	Serial.println(F("E:EDIT NAME"));
+	Serial.println(F("D:DEBUG"));
+}
+
 void setup() {
 	Serial.begin(9600);
 	while (!Serial) {
 	}
 	Serial.println(F("DATALOG6"));
-	pinMode(LED_PIN, OUTPUT);
+	printHelp();
+
+	//pinMode(LED_PIN, OUTPUT);
 
 	Wire.begin();
 	rtc.begin();
@@ -501,12 +512,7 @@ void loop() {
 			}
 		}
 		else {
-			Serial.println(F("T:TIME SET"));
-			Serial.println(F("S:SEARCH DEVICES"));
-			Serial.println(F("L:LIST SD CARD"));
-			Serial.println(F("N:DISPLAY NAMES"));
-			Serial.println(F("E:EDIT NAME"));
-			Serial.println(F("D:DEBUG"));
+			printHelp();
 		}
 		while(Serial.available()) Serial.read();
 	}
