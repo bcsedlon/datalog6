@@ -1,4 +1,7 @@
 #include "Arduino.h"
+
+#define SAVE_INTERVAL 10 //minutes
+
 /*
 SD CARD SPI:
 MOSI - pin 11
@@ -321,7 +324,7 @@ void loop() {
 
 	DateTime now = rtc.now();
 	int m = now.minute();
-	if(m % 10 == 0 && m != minute) {
+	if(m % SAVE_INTERVAL == 0 && m != minute) {
 		minute = m;
 		sdWrite = true;
 	}
